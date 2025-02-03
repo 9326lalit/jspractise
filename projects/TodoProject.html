@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6B74FF, #F05D5E);
+            padding: 20px;
+        }
+
+        .todo-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #fff;
+        }
+
+        .add-btn {
+            background: #28a745;
+        }
+
+        .view-btn {
+            background: #007bff;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+        }
+
+        button:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        ul {
+            margin-top: 20px;
+            list-style: none;
+            text-align: left;
+            padding: 0;
+        }
+
+        li {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            transition: 0.3s;
+        }
+
+        li:hover {
+            background: #ddd;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .delete-btn:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="todo-container">
+        <h2>To-Do List</h2>
+        <div class="input-container">
+            <input type="text" id="todoInput" placeholder="Add a new task...">
+            <button id="addTaskBtn" class="add-btn">Add</button>
+            <button id="viewTasksBtn" class="view-btn">View</button>
+            <button id="clearTasksBtn" class="clear-btn">Clear</button>
+        </div>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script>
+        // Get elements
+        let addTaskBtn = document.getElementById('addTaskBtn');
+        let viewTasksBtn = document.getElementById('viewTasksBtn');
+        let clearTasksBtn = document.getElementById('clearTasksBtn');
+        let todoInput = document.getElementById('todoInput');
+        let todoList = document.getElementById('todoList');
+
+        // Function to add task to localStorage
+        function addTask() {
+            let task = todoInput.value.trim();
+            if (task === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+              
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            
+            if (tasks.length >= 5) {
+        alert("You can only add up to 5 tasks! Please remove a task before adding a new one.");
+        return;
+    }
+    
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+
+            console.log(`Task added: ${task}`);
+
+            todoInput.value = ""; // Clear input field
+            displayTasks(); // Refresh the task list
+        }
+
+        // Function to display tasks from localStorage
+        function displayTasks() {
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            todoList.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `${task} <button class="delete-btn" onclick="deleteTask(${index})">X</button>`;
+                todoList.appendChild(li);
+            });
+        }
+
+        // Function to delete a task
+        function deleteTask(index) {
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+
+            console.log(`Task deleted at index: ${index}`);
+            displayTasks();
+        }
+
+        // Function to clear all tasks
+        function clearTasks() {
+            localStorage.removeItem('tasks');
+            console.log("All tasks cleared.");
+            alert("All tasks removed!");
+            displayTasks();
+        }
+
+        // Event listeners
+        addTaskBtn.addEventListener('click', addTask);
+        viewTasksBtn.addEventListener('click', displayTasks);
+        clearTasksBtn.addEventListener('click', clearTasks);
+
+        // Load tasks when the page loads
+        displayTasks();
+    </script>
+
+</body>
+</html>

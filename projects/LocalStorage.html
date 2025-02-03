@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Object in LocalStorage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6B74FF, #F05D5E);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        .store {
+            background: #28a745;
+        }
+
+        .get {
+            background: #007bff;
+        }
+
+        .remove {
+            background: #dc3545;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Store Object in LocalStorage</h2>
+        <button class="btn store" onclick="storeObject()">Store Object</button>
+        <button class="btn get" onclick="getObject()">Get Object</button>
+        <button class="btn remove" onclick="removeObject()">Remove Object</button>
+        <p class="output" id="output"></p>
+    </div>
+
+    <script>
+        // Static object to store in localStorage
+        const user = {
+            name: "Lalit",
+            age: 22,
+            email: "lalit@example.com",
+            city: "Pune"
+        };
+
+        // Function to store object in localStorage
+        function storeObject() {
+            localStorage.setItem("userData", JSON.stringify(user)); // Convert object to string
+            alert("User object stored in LocalStorage!");
+        }
+
+        // Function to get object from localStorage
+        function getObject() {
+            let storedData = localStorage.getItem("userData");            
+            if (storedData) {
+                let parsedData = JSON.parse(storedData); // Convert string back to object
+                console.log(parsedData.email);
+                document.getElementById("output").innerText = 
+                    `Name: ${parsedData.name}\nAge: ${parsedData.age}\nEmail: ${parsedData.email}\nCity: ${parsedData.city}`;
+            } else {
+                document.getElementById("output").innerText = "No data found in LocalStorage!";
+            }
+        }
+
+        // Function to remove object from localStorage
+        function removeObject() {
+            localStorage.removeItem("userData");
+            alert("User object removed from LocalStorage!");
+            document.getElementById("output").innerText = ""; // Clear output
+        }
+    </script>
+
+</body>
+</html>

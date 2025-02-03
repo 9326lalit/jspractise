@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour Gradient Project</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Centering the body and making it visually attractive */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6B74FF, #F05D5E);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* Section Styling */
+        section {
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(10px); /* Slight blur effect for background */
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        .copyCode {
+            font-size: 18px;
+            color: #444;
+            background-color: #f1f1f1;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            word-wrap: break-word;
+            transition: all 0.3s ease;
+        }
+
+        .copyCode:hover {
+            background-color: #e2e2e2;
+            border-color: #bbb;
+            cursor: pointer;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #051937;
+            color: #fff;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #1d2d3c;
+            transform: scale(1.05); /* Slightly enlarges the button on hover */
+        }
+
+        button:active {
+            background-color: #031b27;
+        }
+
+        /* Layout for Buttons */
+        div {
+            margin-bottom: 30px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            button {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+
+            .copyCode {
+                font-size: 16px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            <button id="mybtn1">
+                #6723cb
+            </button>
+            <button id="mybtn2">
+                #447b68
+            </button>
+        </div>
+        <h2>Copy Your Code Here...</h2>
+        <div class="copyCode">
+            background : linear-gradient(to right, rgb(92,145,229),rgb(152,63,198))
+        </div>
+    </section>
+
+    <script>
+            let btn1 = document.getElementById("mybtn1")
+           
+            let btn2 = document.getElementById("mybtn2")
+
+            let copy = document.querySelector('.copyCode');
+
+
+            const hexvalues = () =>
+            {
+                let myhexa = "0123456789abcdef";
+                let Colour = "#";
+                for(let i=0 ;i<6;i++)
+                {
+                   Colour = Colour + myhexa[Math.floor(Math.random()*16)];
+                }
+                return Colour;
+            }
+
+
+            const handdleButton1 = () =>
+            {
+                let btt1 = hexvalues();
+                // console.log(btt1);
+                document.body.style.background = `linear-gradient(to right, ${btt1},#444)` ;
+                btn1.innerHTML=`${btt1}`;
+                copy.innerHTML=`background : ${btt1}`;
+
+            };
+
+            const handdleButton2 = () =>
+            {
+                let btt2 = hexvalues();
+                btn2.innerHTML=`${btt2}`;
+
+                // console.log(btt2)
+                document.body.style.background = `linear-gradient(to left, ${btt2},)` ;
+                copy.innerHTML=`background : ${btt2}`;
+
+
+            };
+
+           
+            const handlecopy = () =>
+             {
+                navigator.clipboard.writeText(copy.innerText).then(() => 
+                {
+                    alert("Copy succesfully... ");  // Show confirmation after copying
+                }
+                ).catch(err =>
+                {
+                    console.error("Copy failed:", err);  // Handle errors if copy fails
+                })
+             }
+            
+            btn1.addEventListener('click', handdleButton1);
+            btn2.addEventListener('click', handdleButton2 );
+            copy.addEventListener('click', handlecopy );
+
+    </script>
+</body>
+</html>
