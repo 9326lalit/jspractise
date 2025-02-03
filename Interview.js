@@ -139,3 +139,32 @@
 
 // import { check } from "./String.js";
 // check(2,0)
+
+
+
+// Interview question on Date
+// 1. Write a function to add a specified number of days to a given date.
+// const addDaysToDate = (date,extraDay)=>
+// {
+//     date.setDate(date + extraDay);
+//     console.log("leaving date .....",new Date( 1709769600000 ))
+// }
+// const date = new Date("2024-02-29");
+// console.log("Enter date...",date)
+// const newdate = addDaysToDate(date,7);
+
+// console.log(newdate.toLocaleDateString());
+
+
+// 2. Write a function to calculate the difference in days between two given dates.
+
+const getDifDays= (d1,d2) =>
+{
+    let oneDay = 24*60*60*1000;
+    let diff = Math.abs(d2-d1);
+    return Math.round(diff/oneDay);
+}
+
+const d1 = new Date("2024-02-19");
+const d2 = new Date("2024-03-01");
+console.log(getDifDays(d1,d2))

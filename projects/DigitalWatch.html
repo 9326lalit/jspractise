@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Watch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        .watch-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .time {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 0px 0px 10px rgba(0, 255, 204, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="watch-container">
+        <h2>Digital Clock</h2>
+        <div class="time" id="digitalClock"> </div>
+    </div>
+
+    <script>
+        function show()
+    {
+        let newDate = new Date().toLocaleTimeString();
+        let curTime = document.getElementById("digitalClock").innerText = newDate;
+    }
+
+    const interval = setInterval(()=>
+    {
+        
+        show();
+    },1000);
+
+    // setTimeout(() =>clearInterval(interval),5000);
+        
+               
+    </script>
+
+</body>
+</html>
