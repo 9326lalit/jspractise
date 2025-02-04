@@ -158,13 +158,25 @@
 
 // 2. Write a function to calculate the difference in days between two given dates.
 
-const getDifDays= (d1,d2) =>
-{
-    let oneDay = 24*60*60*1000;
-    let diff = Math.abs(d2-d1);
-    return Math.round(diff/oneDay);
-}
+// const getDifDays= (d1,d2) =>
+// {
+//     let oneDay = 24*60*60*1000;
+//     let diff = Math.abs(d2-d1);
+//     return Math.round(diff/oneDay);
+// }
 
-const d1 = new Date("2024-02-19");
-const d2 = new Date("2024-03-01");
-console.log(getDifDays(d1,d2))
+// const d1 = new Date("2024-02-19");
+// const d2 = new Date("2024-03-01");
+// console.log(getDifDays(d1,d2))
+
+
+
+// Objects
+// what is passedByValue and passbyreference
+// pass by value
+let a=10;
+const modifyValue =(x) =>(x=20);
+console.log(modifyValue(a));
+console.log(a)
+
+// pass by refernce
