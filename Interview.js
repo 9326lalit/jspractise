@@ -173,10 +173,109 @@
 
 // Objects
 // what is passedByValue and passbyreference
-// pass by value
-let a=10;
-const modifyValue =(x) =>(x=20);
-console.log(modifyValue(a));
-console.log(a)
+// pass by value -->we are just copy of the primitive value ,and does not affect the original value.
+// let a=10;
+// const modifyValue =(x) =>(x=20);
+// console.log(modifyValue(a));
+// console.log(a)
 
-// pass by refernce
+// pass by refernce --> a ref to the memory location 
+// of the object is passed to the function ro assigned to a variable.
+// let ref = {id:1,name:"TechWizLalit"};
+// let ref1= JSON.parse(JSON.stringify(ref));
+// ref1.name="lkk";
+// console.log(ref1)
+// console.log("original",ref)
+
+// to avoid these behaviour and create a true copy of the object,
+// you can use method like Object.assign() or the spread operator{...}.
+
+
+
+// JSON :: -->is a data interchange format derived from JS objects.
+//  Objects can be easily converted to JSON and vice versa.
+// Diff between JSON and Object is that in json key in double quotes and in object not in double quotes.
+// let student =
+// {
+//     id:1,
+//     name:"lalit",
+//     age:22,
+//     greet:function()
+//     {
+//         console.log(`Id is ${student.id} and name is ${student.name}`)
+//     }
+// }
+
+// let jsondata = JSON.stringify(student);
+// console.log("Jsondata key always in double quotes",jsondata);
+// let parseObj = JSON.parse(jsondata);
+// console.log("Objectdata key always without quotes",parseObj)
+
+
+// object
+// const target = {a:1 , b:2};
+// const source = {b:3 , c:4};
+// const merge = Object.assign({},target,source);
+// console.log(merge)
+// {a:1 , b:3 , c:4}
+// b:3 because of overwritten and always give latest value 
+// check in from left to right for that reason.
+
+
+
+// write a function that compares two objects to determine if they have the same properties and values.
+
+// const areObjectsEqual = (obj1,obj2) =>
+// {
+    // if(obj1.length!=obj2.length)
+    // {
+        
+    //     return false;
+    // }
+    // else
+    // {
+    //     return true;
+    // }not working
+
+//     let o1 = Object.keys(obj1);
+//     let o2 = Object.keys(obj2);
+//     console.log(o1)
+//     console.log(o2)
+//     if(o1.length!==o2.length)
+//     {
+//         console.log("Both are not  same")
+//         return false;
+//     }
+//     else{
+//         console.log("Both are same")
+//         return true;
+//     }
+   
+// }
+// let objA={id:1 , name:"Lalit"};
+// let objB={id:1 , name:"Lk"};
+// console.log(areObjectsEqual(objA,objB));
+
+
+
+// write a function that transforms an array of an object into an object where the keys are the objects ids;
+let inputArrya =
+[
+    { id:1, name:"Alice"},
+    { id:2, name:"Bob"},
+    { id:3, name:"Charlie"},
+];
+const new1 = (a) =>
+{
+    let obj ={};
+    for(let key of a)
+    {
+        // console.log(key.id , key);
+        obj[key.id]= key;
+    }
+
+    return obj;
+}
+
+
+console.log(new1(inputArrya));
