@@ -47,20 +47,33 @@
 // we can add dynamic keys in an object
 
 
-let idType ="personId";
+// let idType ="personId";
 
-const person = {
-    [idType]:"A12345",
-    id: 1,
-    name: "Lalit",
-    greet: function() {
-        console.log("Welcome to World Best JS Course...");
-    }
-};
+// const person = {
+//     [idType]:"A12345",
+//     id: 1,
+//     name: "Lalit",
+//     greet: function() {
+//         console.log("Welcome to World Best JS Course...");
+//     }
+// };
 
-console.log(person,person.greet())
+// console.log(person,person.greet())
 
 
 // useCase : when we want to get the user name and value in react.
 
-// 
+// Question:
+const data=[
+    {name:"lk",age:22},
+    {name:"lk",age:22}
+]
+const check = data.map(Object.keys) ;
+const valuee = data.map(Object.values);
+if(JSON.stringify(check)==JSON.stringify(valuee))
+{
+    console.log("are smae");
+}
+else{
+    console.log("not same")
+}

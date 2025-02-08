@@ -259,23 +259,48 @@
 
 
 // write a function that transforms an array of an object into an object where the keys are the objects ids;
-let inputArrya =
-[
-    { id:1, name:"Alice"},
-    { id:2, name:"Bob"},
-    { id:3, name:"Charlie"},
-];
-const new1 = (a) =>
-{
-    let obj ={};
-    for(let key of a)
-    {
-        // console.log(key.id , key);
-        obj[key.id]= key;
-    }
+// let inputArrya =
+// [
+//     { id:1, name:"Alice"},
+//     { id:2, name:"Bob"},
+//     { id:3, name:"Charlie"},
+// ];
+// const new1 = (a) =>
+// {
+//     let obj ={};
+//     for(let key of a)
+//     {
+//         // console.log(key.id , key);
+//         obj[key.id]= key;
+//     }
 
-    return obj;
-}
+//     return obj;
+// }
 
 
-console.log(new1(inputArrya));
+// console.log(new1(inputArrya));
+
+
+// ECMA2015-23
+// Write a program to swap two variables without using 3rd variable?
+
+// let a=10;
+// let b=20;
+
+// // mostly will do using 3rd var
+// // let c=b;
+// // b=a;
+// // a=c;
+// // console.log("a",a,"b",b)
+// // without using 3rd variable
+// [a,b]=[b,a]
+// console.log("a",a,"b",b)
+
+
+
+// Destructuring objects:
+// const user={name:"Lalit",age:23};
+// // Extracting properties:
+// const name=user.name;
+// console.log(name)
+
