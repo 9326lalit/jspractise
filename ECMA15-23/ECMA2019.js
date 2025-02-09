@@ -22,10 +22,44 @@
 
 // Object.fromEntries()  -->have an entries() method,since ES2017;
 // It returns an array containing all the object own properties,as an array of [key,value] pairs:
-const person=[{name:"vinod",age:22}];
-const entries = Object.entries(person)
-const newEntries=Object.fromEntries(entries);
-console.log(entries)
-console.log(newEntries)
+// const person=[{name:"vinod",age:22}];
+// const entries = Object.entries(person)
+// const newEntries=Object.fromEntries(entries);
+// console.log(entries)
+// console.log(newEntries)
 // console.log(entries==newEntries) 
 //we match there reference(not contain).
+
+// String.prototype.{trimStrat,trimEnd}
+// trimStart() -->Return a new string with removed white space from the start of the original string
+// console.log("Testing".trimStart());
+// console.log("                     Testing".trimStart());
+// console.log("TEsting    ".trimStart());
+// // trimEnd() -->Return a new string with removed white space
+// console.log("    testing".trimEnd())
+// console.log(" testing    ".trim())
+// console.log("  testing   ".trimEnd());
+
+
+// Symbol.prototype.description
+// In JS,a symbol is a primitive data type introduced in ECMAScript 2015.
+// It represents a unique identifier that is immutable
+// and guranteed to be unique.Symbols are often used as property keys in objects to avoid naming conflicts.
+// const mySymbol= Symbol("This is my symbol");
+// console.log(mySymbol.description);
+// console.log(typeof mySymbol)
+
+
+// Optional Catch Binding
+// In JS new features called "optional catch binding" was introduced
+// for the try...catch statement.This feature allows
+// you to omit the parameter in the catch block,making it optional.
+// we prev.had to do:
+try
+{
+//...
+}
+catch(e)
+{
+//if error in try then catch handle error
+}

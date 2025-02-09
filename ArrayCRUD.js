@@ -139,7 +139,7 @@
 // console.log(arr);
 
 
-// 8> Filter() -->find method is used to find the first element in an array .
+// 8> find() -->find method is used to find the first element in an array .
 // find(), findIndex() --> same as map
 // find() -->just gives us first element
 // const arr=[1,2,3,4,5,6,2,3,5];
