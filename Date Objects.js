@@ -3,8 +3,8 @@
 // Syntax :-> new Date() , new Date(date string)
 
 // 9 ways to create a new Date objects
-// 1. new Date()
-// 2. new Date(date string)
+// 1.new Date()
+// 2.new Date(date string)
 // 3.new Date(year , month)
 // 4.new Date(year,month,day)
 // 5.new Date(year,month,day,hours)

@@ -1,7 +1,7 @@
 // Round , Floor and Ceil.
 // Math.round() -> rounds to the nearest integer.
-//Math.floor() -> always rounds down to the nearest integer.
-//Math.ceil() -> always rounds up to the nearest integer.
+// Math.floor() -> always rounds down to the nearest integer.
+// Math.ceil() -> always rounds up to the nearest integer.
 
 // Math works with the Number type. It doesnt work with BigInt.
 
