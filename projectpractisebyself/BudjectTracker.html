@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .income-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .expense-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .all-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .balance {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .transaction-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .transaction {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .income {
+            color: green;
+        }
+
+        .expense {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>💰 Budget Tracker</h1>
+        <h2 id="balance">Balance: ₹0</h2>
+
+        <h3>Add Transaction</h3>
+        <input type="text" id="category" placeholder="Category (e.g., Salary, Rent, Food)">
+        <input type="number" id="amount" placeholder="Amount">
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+        <button id="addTransaction">Add Transaction</button>
+
+        <h3>Filter Transactions</h3>
+        <button class="view" id="viewAll">View All</button>
+        <button class="income-btn" id="filterIncome">Income</button>
+        <button class="expense-btn" id="filterExpense">Expenses</button>
+
+        <h3>Transaction History</h3>
+        <ul id="transactionList" class="transaction-list">
+            <li>No transactions yet.</li>
+        </ul>
+    </div>
+
+    <script>
+        let balance = document.getElementById('balance');
+        let category = document.getElementById('category');
+        let amount = document.getElementById('amount');
+        let addTransaction = document.getElementById('addTransaction');
+        let view = document.getElementById('viewAll');
+        let filterIncome = document.getElementById('filterIncome');
+        let filterExpense = document.getElementById('filterExpense');
+        let transactionHistory = document.getElementById('transactionList');
+
+        // Function to update balance
+        function updateBalance() {
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            let totalBalance = transactions.reduce((acc, t) => {
+                return t.type === "income" ? acc + parseFloat(t.amount) : acc - parseFloat(t.amount);
+            }, 0);
+            balance.textContent = `Balance: ₹${totalBalance}`;
+        }
+
+        // Function to display transactions in UI
+        function displayTransactions(filteredTransactions) {
+            transactionHistory.innerHTML = "";
+            if (filteredTransactions.length === 0) {
+                transactionHistory.innerHTML = "<li>No transactions found.</li>";
+                return;
+            }
+            filteredTransactions.forEach(t => {
+                let li = document.createElement("li");
+                li.className = `transaction ${t.type}`;
+                li.innerHTML = `${t.category}: ₹${t.amount} <span class="${t.type}">${t.type.toUpperCase()}</span>`;
+                transactionHistory.appendChild(li);
+            });
+        }
+
+        // Add transaction
+        addTransaction.addEventListener("click", () => {
+            let amt = amount.value.trim();
+            let cat = category.value.trim();
+            let typee = document.getElementById("type").value;
+
+            if (!amt || !cat) {
+                alert("Please enter both category and amount.");
+                return;
+            }
+
+            let transaction = { category: cat, amount: parseFloat(amt), type: typee };
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            transactions.push(transaction);
+            localStorage.setItem("transactions", JSON.stringify(transactions));
+
+            updateBalance();
+            displayTransactions(transactions);
+            alert("Transaction added successfully!");
+            category.value = "";
+            amount.value = "";
+        });
+
+        // View all transactions
+        view.addEventListener("click", () => {
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            console.log("All Transactions:", transactions);
+            displayTransactions(transactions);
+        });
+
+        // Filter income transactions
+        filterIncome.addEventListener("click", () => {
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+            // Filter income transactions
+            let incomeTransactions = transactions.filter(t => t.type === "income");
+
+            // Calculate total income amount
+            let totalIncome = incomeTransactions.reduce((total, t) => total + t.amount, 0);
+
+            console.log("Income Transactions:", incomeTransactions);
+            console.log("Total Income: ₹", totalIncome);
+
+            alert("Total Income: ₹" + totalIncome); // Show total amount in alert
+
+            // Display filtered income transactions in UI
+            displayTransactions(incomeTransactions);
+        });
+
+
+        // Filter expense transactions
+        filterExpense.addEventListener("click", () => {
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            let expenseTransactions = transactions.filter(t => t.type === "expense");
+            console.log("Expense Transactions:", expenseTransactions);
+            displayTransactions(expenseTransactions);
+        });
+
+        // Load data on page load
+        window.addEventListener("load", () => {
+            updateBalance();
+            displayTransactions(JSON.parse(localStorage.getItem("transactions")) || []);
+        });
+    </script>
+</body>
+
+</html>

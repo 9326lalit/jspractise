@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<body>
+
+    <h1>Enter Name</h1>
+    <input type="text" id="nameInput" />
+    <button id="submitBtn">Submit</button>
+    <button id="viewBtn">View</button>
+
+    <h1 id="displayText">Your name will appear here</h1>
+    <h1 id="showText">.....</h1>
+
+    <script>
+        // Get elements
+        let submitBtn = document.getElementById('submitBtn');
+        let nameInput = document.getElementById('nameInput');
+        let displayText = document.getElementById('displayText');
+        let viewBtn = document.getElementById('viewBtn');
+        let showText = document.getElementById('showText');
+
+        // Save name to local storage when clicking "Submit"
+        submitBtn.addEventListener("click", () => {
+            let nameValue = nameInput.value.trim();
+            if (nameValue) {
+                localStorage.setItem("username", nameValue);
+                displayText.innerText = `Hello, ${nameValue}!`;
+                console.log("Saved:", nameValue);
+            }
+        });
+
+        // Show stored name when clicking "View"
+        viewBtn.addEventListener("click", () => {
+            let storedName = localStorage.getItem("username");
+            if (storedName) {
+                showText.textContent = `Stored Name: ${storedName}`;
+            } else {
+                showText.textContent = "No name found in local storage.";
+            }
+        });
+
+    </script>
+</body>
+</html>

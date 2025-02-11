@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App with Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input, textarea {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #saveBtn { background-color: #28a745; color: white; }
+        #viewBtn { background-color: #007bff; color: white; }
+        #deleteBtn { background-color: #dc3545; color: white; }
+        #searchBtn { background-color: #ffc107; color: black; }
+
+        #notesList {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+            text-align: left;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .deleteNoteBtn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📝 Notes App</h1>
+    <textarea id="noteInput" placeholder="Write your note here..."></textarea>
+    <br>
+    <button id="saveBtn">Save Note</button>
+    <button id="viewBtn">View Notes</button>
+    <button id="deleteBtn">Clear All Notes</button>
+    <br>
+    <input type="text" id="searchInput" placeholder="Search notes....">
+    <button id="searchBtn">Search</button>
+
+    <div id="notesList">
+        <h2>📌 Your Notes:</h2>
+        <ul id="notesUl"></ul>
+    </div>
+
+    <script>
+        let noteInput = document.getElementById('noteInput');
+        let saveBtn = document.getElementById('saveBtn');
+        let viewBtn = document.getElementById('viewBtn');
+        let deleteBtn = document.getElementById('deleteBtn');
+        let searchBtn = document.getElementById('searchBtn');
+        let searchInput = document.getElementById('searchInput');
+        let notesUl = document.getElementById('notesUl');
+
+        // Save note to localStorage
+        saveBtn.addEventListener("click", () => {
+            let note = noteInput.value.trim();
+            if (note === "") return alert("Please enter a note!");
+
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            notes.push(note);
+            localStorage.setItem("notes", JSON.stringify(notes));
+
+            noteInput.value = ""; // Clear input field after saving
+            alert("Note saved successfully!");
+        });
+
+        // View all saved notes
+        viewBtn.addEventListener("click", () => {
+            displayNotes();
+        });
+
+        // Display notes from localStorage
+        function displayNotes(notesArray = null) {
+            notesUl.innerHTML = "";
+            let notes = notesArray || JSON.parse(localStorage.getItem("notes")) || [];
+
+            if (notes.length === 0) {
+                notesUl.innerHTML = "<li>No notes found.</li>";
+                return;
+            }
+
+            notes.forEach((note, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `${note} <button class="deleteNoteBtn" onclick="deleteSingleNote(${index})">❌</button>`;
+                notesUl.appendChild(li);
+            });
+        }
+
+        // Delete a single note
+        function deleteSingleNote(index) {
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            notes.splice(index, 1);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            displayNotes();
+        }
+
+        // Delete all notes
+        deleteBtn.addEventListener("click", () => {
+            localStorage.removeItem("notes");
+            displayNotes();
+            alert("All notes deleted!");
+        });
+
+        // Search for notes
+        searchBtn.addEventListener("click", () => {
+            let query = searchInput.value.trim().toLowerCase();
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+            let filteredNotes = notes.filter(note => note.toLowerCase().includes(query));
+            displayNotes(filteredNotes);
+        });
+
+    </script>
+
+</body>
+</html>
