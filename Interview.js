@@ -304,5 +304,15 @@
 // const name=user.name;
 // console.log(name)
 
+// ------------------------------------------------------------
+
+// HOC
+//  
 
 
+
+// -----------------------------------------------------
+// callbackehell
+// also know as the Pyramid of Doom,refers to a situation in 
+// asynchronous operations.This often results in code that is difficult to
+// read, understand, and maintain due to its deeply nested structure.
