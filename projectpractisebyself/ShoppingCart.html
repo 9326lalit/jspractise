@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product {
+            display: flex;
+            justify-content: space-between;
+            background: #eee;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .cart {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🛒 Shopping Cart</h1>
+        <div id="products">
+            <h3>Products</h3>
+            <div class="product">
+                <span>Product A - ₹500</span>
+                <button class="add-btn" data-name="Product A" data-price="500">Add to Cart</button>
+            </div>
+            <div class="product">
+                <span>Product B - ₹800</span>
+                <button class="add-btn" data-name="Product B" data-price="800">Add to Cart</button>
+            </div>
+            <div class="product">
+                <span>Product C - ₹1200</span>
+                <button class="add-btn" data-name="Product C" data-price="1200">Add to Cart</button>
+            </div>
+        </div>
+
+        <h3>Your Cart</h3>
+        <div class="cart" id="cart"></div>
+        <p class="cart-total" id="cartTotal">Total: ₹0</p>
+        <button id="clearCart">Clear Cart</button>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function saveCart() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        function updateCart() {
+            const cartElement = document.getElementById("cart");
+            const cartTotalElement = document.getElementById("cartTotal");
+            cartElement.innerHTML = "";
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                let cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    ${item.name} - ₹${item.price}
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartElement.appendChild(cartItem);
+            });
+
+            cartTotalElement.textContent = `Total: ₹${total}`;
+        }
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            saveCart();
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCart();
+        }
+
+        document.querySelectorAll(".add-btn").forEach(button => {
+            button.addEventListener("click", (e) => {
+                let productName = e.target.getAttribute("data-name");
+                let productPrice = parseInt(e.target.getAttribute("data-price"));
+                addToCart(productName, productPrice);
+            });
+        });
+
+        document.getElementById("clearCart").addEventListener("click", () => {
+            cart = [];
+            saveCart();
+            updateCart();
+        });
+
+        updateCart();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation - Error Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📝 Form Validation</h1>
+        <form id="myForm">
+            <input type="text" id="username" placeholder="Enter username">
+            <p class="error" id="usernameError"></p>
+
+            <input type="email" id="email" placeholder="Enter email">
+            <p class="error" id="emailError"></p>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><strong>try...catch</strong></td>
+                <td>Catches errors and prevents the program from stopping.</td>
+                <td> <code> try { let x = y; } catch (error) { console.log(error.message); } </code> </td>
+            </tr>
+            <tr>
+                <td><strong>finally</strong></td>
+                <td>Executes code regardless of an error occurring.</td>
+                <td> <code> try { let x = y; } catch (error) { console.log(error.message); } finally { console.log("Done!"); } </code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>throw</strong></td>
+                <td>Manually throws a custom error.</td>
+                <td> <code> throw new Error("Something went wrong!"); </code> </td>
+            </tr>
+            <tr>
+                <td><strong>onerror</strong> (Global)</td>
+                <td>Handles errors globally in browsers.</td>
+                <td> <code> window.onerror = function(message, source, lineno, colno, error) { console.log("Error:", message); }; </code>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Type of Error</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><strong>SyntaxError</strong></td>
+                <td>Occurs when JavaScript code has incorrect syntax.</td>
+                <td><code>console.log("Hello)</code> ❌ (Missing closing quote)</td>
+            </tr>
+            <tr>
+                <td><strong>ReferenceError</strong></td>
+                <td>Happens when trying to access a variable that doesn’t exist.</td>
+                <td><code>console.log(x);</code> ❌ (x is not defined)</td>
+            </tr>
+            <tr>
+                <td><strong>TypeError</strong></td>
+                <td>Occurs when an operation is performed on the wrong data type.</td>
+                <td><code>let num = 10; num.toUpperCase();</code> ❌</td>
+            </tr>
+            <tr>
+                <td><strong>RangeError</strong></td>
+                <td>Thrown when a number is out of range.</td>
+                <td><code>let arr = new Array(-1);</code> ❌ (Invalid array length)</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let usernameError = document.getElementById("usernameError");
+            let emailError = document.getElementById("emailError");
+
+            // Clear previous errors
+            usernameError.innerText = "";
+            emailError.innerText = "";
+
+            try {
+                if (username.trim() === "") throw "Username is required!";
+                if (email.trim() === "") throw "Email is required!";
+                if (!email.includes("@")) throw "Invalid email format!";
+                alert("Form submitted successfully!");
+            } catch (error) {
+                if (error.includes("Username")) usernameError.innerText = error;
+                if (error.includes("Email")) emailError.innerText = error;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
