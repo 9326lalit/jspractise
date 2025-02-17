@@ -21,10 +21,9 @@
 // {
 //     setTimeout(()=>
 //     {
-//         resolve("I miss you gayu...");
+//         resolve("I miss you lalit from gayu...");
 //     },1000)
 // })
-
 // shweta.then((res)=>
 // {
 //     console.log(res)
@@ -33,5 +32,5 @@
 //     console.log("no reply");
 // }).finally(()=>
 // {
-//     console.log("Finally she said i love you too")
+//     console.log("Finally she is mine...")
 // })

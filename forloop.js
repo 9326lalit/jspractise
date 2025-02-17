@@ -30,7 +30,7 @@
 // }
 
 
-// 3> for each loop==> the arr.forEach() metho d calls the provided function
+// 3> for each loop==> the arr.forEach() method calls the provided function
 // once for each element of the array. The provided function may perform any kind
 // of operation on the elements of the given array.
 

@@ -62,7 +62,6 @@
 //         arr.splice(j,1);
 //         j--;
 //     }
-
 //    }
 // }
 
@@ -73,7 +72,8 @@
 
 
 //     let space = "";
-//     for (let i = n.length - 1; i >= 0; i--) {
+//     for (let i = n.length - 1; i >= 0; i--)
+//     {
 //         space += n[i];
 
 //     }
@@ -153,7 +153,7 @@
 // console.log("Enter date...",date)
 // const newdate = addDaysToDate(date,7);
 
-// console.log(newdate.toLocaleDateString());
+// console.log(newdate);
 
 
 // 2. Write a function to calculate the difference in days between two given dates.

@@ -1,6 +1,6 @@
 
 // this.Object -->this keyword refers to an object.
-// which object depends on how this is being invoked(used ro called);
+// which object depends on how this is being invoked(used or called);
 
 // alone this refers to the global object.
 // in a function,this refers to the global object.
