@@ -64,7 +64,7 @@
 // console.log(strmm);
 
 
-// 5>Search method -->returns index no where the first match found otherwise --1 not found.
+// 5>Search method -->returns index no where the first match found otherwise -1 not found.
 // but beauty is we can use regular expressions as well with search method
 // let text ='My name is Lalit';
 // let result = text.search(/lalit/i);
@@ -73,7 +73,7 @@
 // 6>match() -->returns an array of the matched values or null if not match is found.
 // let text ='My Lalit name is Lalit';
 // let result = text.match("Lalit");
-// here the js converts the normat text into regular expression text.match(/Lalit/);without the g(global) flag
+// // here the js converts the normat text into regular expression text.match(/Lalit/);without the g(global) flag
 // console.log(result);
 
 
@@ -97,7 +97,7 @@
 
 
 // // return booleans value
-// // 9>startswith() -->returns true if a string begins with a specified value.otherwise it return fals.e
+// // 9>startswith() -->returns true if a string begins with a specified value.otherwise it return false
 // let text ="Lalit khairnar";
 // let result = text.startsWith("Lalit",1);
 // // 1 is index position means from that index number is starts or not.
@@ -247,21 +247,21 @@
 
 
 // check function given is string is pangram or not?
-const pangram = (str) =>
-{
+// const pangram = (str) =>
+// {
 
-    let check = str.toLowerCase().split("");
-    // console.log(check);
+//     let check = str.toLowerCase().split("");
+//     // console.log(check);
 
-    const values = check.filter((curEle)=>
+//     const values = check.filter((curEle)=>
     
-        // const cc= console.log(`${curEle} , ${index}`)
-        // const cc= console.log(curEle.charCodeAt())
-        // const bb = console.log(curEle.charCodeAt(0))
-        curEle.charCodeAt() >= "a".charCodeAt() && curEle.charCodeAt() <= "z".charCodeAt()
+//         // const cc= console.log(`${curEle} , ${index}`)
+//         // const cc= console.log(curEle.charCodeAt())
+//         // const bb = console.log(curEle.charCodeAt(0))
+//         curEle.charCodeAt() >= "a".charCodeAt() && curEle.charCodeAt() <= "z".charCodeAt()
 
-    )
-    // console.log(values)
-    console.log([...new Set(values)])
-}
-pangram("The quick brown fox jumps over the lazy dog");
+//     )
+//     // console.log(values)
+//     console.log([...new Set(values)])
+// }
+// pangram("The quick brown fox jumps over the lazy dog");

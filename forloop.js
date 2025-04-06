@@ -14,12 +14,13 @@
 
 // 1> for of loop ==>is used to iterate overr the values of
 //  an iterable object,such as arrays,strings,or other iterable objects.
-// let fruits = ["apple","mango","grapes","orange"]
+let fruits = ["apple","mango","grapes","orange"]
 // for(let items of fruits)
 // {
-//     console.log(items)
+//     console.log(items);
     
 // }
+
 
 // 2> for in loop ==> is used to iterate over 
 // the properties (including indices) of an object.
@@ -49,7 +50,6 @@
 //     // if(i%2==0)
 //     // {
 //     //     console.log("Even",i);
-        
 //     // }
 //     // return sum
 //     // sum = sum + numbers[i];
@@ -62,10 +62,10 @@
 // map()  creates a new array from calling a function for every array
 // element.map() does not change the original array.
 
-let fruits = ["apple","mango","grapes","orange"]
+// let fruits = ["apple","mango","grapes","orange"]
 
-const myap = fruits.map((curEle , index , arr) =>
-{
-    return `${curEle} ${index}` ;
-})
-console.log(myap)
+// const myap = fruits.map((curEle , index , arr) =>
+// {
+//     return `${curEle} ${index}` ;
+// })
+// console.log(myap)

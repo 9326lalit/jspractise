@@ -70,6 +70,7 @@ const data=[
 ]
 const check = data.map(Object.keys) ;
 const valuee = data.map(Object.values);
+// const areEqual = JSON.stringify(data[0]) === JSON.stringify(da/ta[1]);
 if(JSON.stringify(check)==JSON.stringify(valuee))
 {
     console.log("are smae");

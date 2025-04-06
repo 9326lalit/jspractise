@@ -69,13 +69,10 @@
 
 
 // function Palindrome(n) {
-
-
 //     let space = "";
 //     for (let i = n.length - 1; i >= 0; i--)
 //     {
 //         space += n[i];
-
 //     }
 //     console.log(space);
 //     if (n.join("") === space) {
@@ -97,38 +94,27 @@
 //     {name :"Tablet" , price:900},
 //     {name :"Watch" , price:100}
 // ]
-
 // const check = products.filter((curEle)=>
 // {
-  
-//   return curEle.price > 400;
- 
-// });
-
-// console.log(check);
+//     // console.log(curEle)
+//     return curEle.price > 900;
+// })
+// console.log(check)
 
 
 // filter unique values
-// const numbers =[11,2,3,4,11,5,6,7,6,8,9]
-// let unique = numbers.filter((curEle, index , numbers)=>{
-    // console.log(curEle);
-    // console.log(index);
-    
-    
-    // console.log("curele" + curEle+" index"+ numbers.indexOf(curEle));
-    
-    // console.log(numbers[index]);
-    // console.log(numbers.indexOf(curEle));
-    // if( numbers.indexOf(curEle) === index)
-    // {
-    //     console.log(curEle)
-    // }
+const numbers = [11, 2, 3, 4, 11, 5, 6, 7, 6, 8, 9];
 
-    //or set method
-    
-// })
-// console.log(unique);
+let unique = numbers.filter((curEle, index, arr) => 
+{
+   
+    return arr.indexOf(curEle) === index;
+});
 
+const sortt = unique; // Output: [11, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(sortt);
+// const check= sortt.sort((a,b)=>a-b)
+// console.log(check)
 // console.log([...new Set(numbers)]);
 
 
@@ -236,7 +222,6 @@
     // {
     //     return true;
     // }not working
-
 //     let o1 = Object.keys(obj1);
 //     let o2 = Object.keys(obj2);
 //     console.log(o1)
@@ -316,3 +301,36 @@
 // also know as the Pyramid of Doom,refers to a situation in 
 // asynchronous operations.This often results in code that is difficult to
 // read, understand, and maintain due to its deeply nested structure.
+
+
+// 
+// let str ="Krishna";
+// let str2="veni";
+// let ss = str[0]+"for"+str;
+// const dd =str2[0]+"for"+str2
+// console.log(ss+"_"+dd)
+
+// array sort
+// "use strict"
+// let arr=[300,2,5,22,500];
+// console.log(arr.sort((a,b)=>a-b))
+
+
+// "use strict"
+// a=100;
+// console.log(a)
+
+
+// if([])
+// {
+//     console.log("Lalit")
+// }
+// else{
+//     console.log("not")
+// }
+
+
+// console.log([]==false)  //true
+
+// let arr=[1,2,3,[4,5,7]]
+// console.log(arr.flat())

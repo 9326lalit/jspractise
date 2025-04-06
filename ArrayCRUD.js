@@ -113,11 +113,13 @@
 // arr.splice(3,1)
 // console.log(arr)
 
+
 // 5> indexOf(searchElement , fromIndex) --> The indexOf method returns the first index at which a given element
 // can be found in the array, or -1 if it is not present.
 // const arr = ["Lalit","khairnar","lk","photography"]
 // console.log(arr.indexOf("lk"));
 // console.log(arr);
+
 
 // 6>lastIndexOf() --> gives and real value check and give index number
 // const arr = ["Lalit","khairnar","lk","lk","photography","lk"]
@@ -186,7 +188,7 @@
 
 // sort and compare
 // sort -->convert in ascending order
-// const fruits =["Mango","Banana","Chiku","Apple"
+// const fruits =["Mango","Banana","Chiku","Apple"]
 // const numbers =[11,2,1,3,4,11,5,6,7,6,8,9]
 // numbers.sort((a,b)=>a-b)
 // --> by defulat sort() compares as a string
@@ -210,21 +212,31 @@
 // syntax : array.reduce(function callback(accumulator , currentValue , index , array){},intialValue);
 // just accumulator extra part.
 // eg.shoping cart -->gives and total price or percent
-const productprice = [100,200,300,400,500];
-const totalprice = productprice.reduce((accum , curEle)=>
-{
+// const productprice = [100,200,300,400,500];
+// const totalprice = productprice.reduce((accum , curEle)=>
+// {
     
-    return accum + curEle;
+//     return accum + curEle;
     // accum is 0 + curEle 100 = 100
     // accum is 100 + curEle 200 = 300
     // accum is 300 + curEle 300 = 600
     // accum is 600 + curEle 400 = 1000
     // accum is 1000 + curEle 500 = 1500 (totalprice);
-},0); 
+// },0); 
 // these is 0 is accum value 
 
-console.log("Total Price :",totalprice);
+// console.log("Total Price :",totalprice);
 
 
+// const aa =[1,2,3,4];
+// aa.map((cur ,index)=>
+// {
+//     console.log(index,cur*2);
+// })
 
-
+// some and every
+// const aa =[1,2,3,4,5]
+// const check = aa.some(a=>a%6===0);
+// console.log(check)
+// const check1 = aa.every(n=>n>0)
+// console.log(check1)

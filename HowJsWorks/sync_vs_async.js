@@ -14,7 +14,7 @@
 //     fun2();
 //     console.log("Fun1 is end");
 // }
-// fun1()
+// fun1()  
 
 
 // Asynchronous Example::
